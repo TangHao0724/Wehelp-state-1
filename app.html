@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>week1</title>
+</head>
+<body >
+    <div id="overlay" class="overlay"></div>
+    <div id="sidebar" class="sidebar">
+        <button id="sidebar-btn" onclick= exitToggle()>
+            <span>X</span>
+        </button>
+        <ul id="sidebar-menu">
+            <li class="sidebar-menu-items">Item1</li>
+            <li class="sidebar-menu-items">Item2</li>
+            <li class="sidebar-menu-items">Item3</li>
+            <li class="sidebar-menu-items">Item4</li>
+        </ul>
+    </div>
+    <nav>
+        <span id="logo">My Website</span>
+
+        <button id="burger-bt">
+            <img   class="burger" src="options.png" alt="">
+        </button>
+        <ul id="menu">
+            <li class="menu-items">Item1</li>
+            <li class="menu-items">Item2</li>
+            <li class="menu-items">Item3</li>
+            <li class="menu-items">Item4</li>
+        </ul>
+    </nav>
+    <header>
+        <span>Welcome to MyHome</span>
+    </header>
+    <main>
+        <section  class="promotion-section">
+            <div class="promotion-bars bar-1">
+            <img class="promotion-img" src="shisa.jpg" alt=""/>
+            <div class="promotion-content">Promotion 1 </div>
+            </div>
+            <div class="promotion-bars bar-2">
+            <img class="promotion-img" src="shisa.jpg" alt=""/>
+            <div class="promotion-content">Promotion 2 </div>
+            </div>
+            <div class="promotion-bars bar-3">
+            <img class="promotion-img" src="shisa.jpg" alt=""/>
+            <div class="promotion-content">Promotion 3 </div>
+            </div>
+        </section >
+        
+        <section  class="content-section">
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title1
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title2
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title3
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title4
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title5
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title6
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title7
+                </div>
+            </article >
+            <article  class="content-block">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title8
+                </div>
+            </article >
+            <article  class="content-block block-9">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title9
+                </div>
+            </article >
+            <article  class="content-block block-10">
+                <img class="content-img" src="shisa.jpg" alt="">
+                <img class="content-star" src="star.png" alt="">
+                <div class="content-img-title">
+                    Title10
+                </div>
+            </article >
+            
+        </section >
+        
+    </main>
+    <script>
+    const mediaQuery = window.matchMedia('(min-width: 600px)');
+    function handleTabletChange(e) {
+        if (e.matches) {
+            exitToggle();
+        }
+    }
+    mediaQuery.addEventListener('change', handleTabletChange);
+
+    document.getElementById("burger-bt").addEventListener("click",burgerToggle);
+    document.getElementById("sidebar-btn").addEventListener("click",exitToggle);
+    document.getElementById("overlay").addEventListener("click",exitToggle);
+
+    function burgerToggle(){
+        let overlay = document.getElementById("overlay");
+        let sidebar = document.getElementById("sidebar");
+        overlay.classList.add("active");
+        sidebar.classList.add("active");
+    }
+    function exitToggle(){
+        let overlay = document.getElementById("overlay");
+        let sidebar = document.getElementById("sidebar");
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+
+    }
+</script>
+</body>
+</html>
