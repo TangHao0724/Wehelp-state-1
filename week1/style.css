@@ -41,6 +41,7 @@ main{
     width: 1200px;
     background-color: #ffffff;
     color: #000000;
+    font-size: var(--base-font-size);
     
 }
 /* navbar物件 */
@@ -57,6 +58,29 @@ main{
     margin: 0;
     padding: 0;
 }
+.menu-items{
+   font-size: var(--base-font-size); 
+   padding: 10px;
+}
+.menu-items > a {
+    text-decoration: none;
+    color: #000000;
+}
+.menu-items > a:hover {
+  color: #636363;
+  text-decoration: none;
+}
+
+#burger-bt{
+    background-color: #00000000;
+    border: 0;
+    cursor: pointer;
+}
+.burger{
+    display: none;
+    height: 30px;
+}
+/* sidebar 遮住底下內容 */
 .overlay{
     position: fixed;
     width: 100vw;
@@ -90,6 +114,14 @@ main{
     font-size: calc(var(--base-font-size)*1.5);
     padding: 15px;
 }
+.sidebar-menu-items >a{
+    text-decoration: none;
+    color: #000000;
+}
+.sidebar-menu-items >a:hover {
+  color: #636363;
+  text-decoration: none;
+}
 #sidebar-btn{
     position: absolute;
     top: 5px;
@@ -108,19 +140,7 @@ main{
 .sidebar.active {
   right: 0; 
 }
-.menu-items{
-   font-size: var(--base-font-size); 
-   padding: 10px;
-}
-#burger-bt{
-    background-color: #00000000;
-    border: 0;
-    cursor: pointer;
-}
-.burger{
-    display: none;
-    height: 30px;
-}
+
 /* promotion-section */
 .promotion-section{
     display: grid;
@@ -148,6 +168,8 @@ main{
 .promotion-img{
     width: 80px;
     height: 50px;
+    object-fit:cover;
+    object-position: center;
 }
 .promotion-content{
     display: flex;
