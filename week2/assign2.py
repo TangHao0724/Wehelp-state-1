@@ -72,22 +72,24 @@ def func2(ss, start, end, criteria):
         oprator = criteria_match.group(2)
         value = criteria_match.group(3)
     else:
-        return "Sorry"
+        return print("Sorry")
     if type == "name" and not (value.startswith("'") or value.startswith('"')):
         criteria = f"{type}=='{value}'"
     service = list(filter(lambda x:eval(criteria,{},x),services))
     if not service:
-        return "Sorry"
-    ans = {}
-    match oprator:
-        case ">=":
-            ans = min(service, key=lambda x: x[type])
-        case "<=":
-            ans = max(service, key=lambda x: x[type])
-        case "=":
-            ans = service[0]
-
-        
+        return print("Sorry")
+    
+    def find_service(service,oprator):
+        may = {}
+        match oprator:
+            case ">=":
+                may = min(service, key=lambda x: x[type])
+            case "<=":
+                may = max(service, key=lambda x: x[type])
+            case "=":
+                may = service[0]
+        return may
+    
     def check_time(name,s,e ,o_list):
         if not any(item["name"] == name for item in services):
             return True
@@ -99,13 +101,26 @@ def func2(ss, start, end, criteria):
             if (order_TRan.start < ran.stop and ran.start < order_TRan.stop):
                 return False
         return True
-
-    if check_time(ans["name"],start, end, o_list):
-        o_list.append({ans["name"]:(start, end)})
-        print(ans["name"])
+    
+    loop_service = service.copy()
+    while len(loop_service) > 0 :
+        ans  = find_service(loop_service,oprator)
+        if not ans :
+            print("Sorry")
+            break
+        if check_time(ans["name"],start, end, o_list):
+            o_list.append({ans["name"]:(start, end)})
+            print(ans["name"])
+            break
+        else:
+            loop_service.remove(ans)
+            continue
     else:
         print("Sorry")
-    
+
+
+        
+
 func2(services, 15, 17, "c>=800") # S3
 func2(services, 11, 13, "r<=4") # S3
 func2(services, 10, 12, "name=S3") # Sorry
@@ -113,6 +128,7 @@ func2(services, 15, 18, "r>=4.5") # S1
 func2(services, 16, 18, "r>=4") # Sorry
 func2(services, 13, 17, "name=S1") # Sorry
 func2(services, 8, 9, "c<=1500") # S2
+func2(services, 8, 9, "c<=1500")
 
 
 def func3(index:int):
