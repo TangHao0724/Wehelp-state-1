@@ -75,7 +75,7 @@ def func2(ss, start, end, criteria):
         return print("Sorry")
     if type == "name" and not (value.startswith("'") or value.startswith('"')):
         criteria = f"{type}=='{value}'"
-    service = list(filter(lambda x:eval(criteria,{},x),services))
+    service = list(filter(lambda x:eval(criteria,{},x),ss))
     if not service:
         return print("Sorry")
     
@@ -91,7 +91,7 @@ def func2(ss, start, end, criteria):
         return may
     
     def check_time(name,s,e ,o_list):
-        if not any(item["name"] == name for item in services):
+        if not any(item["name"] == name for item in ss):
             return True
         order_TRan= range(s,e)
         total_Tlist = [ range(o[name][0], o[name][1]) for o in o_list if name in o]
