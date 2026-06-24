@@ -219,6 +219,31 @@ main{
     right: 0px;
     opacity: 0.7;
 }
+#bottom-bar{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+}
+#more-bt {
+    display: flex;
+    justify-content: center;
+    font-size: var(--base-font-size);
+    background-color: var(--main-color);
+    border: none;
+    padding: 15px; 
+    cursor: pointer;
+    border-radius: 1vw
+}
+#more-bt :active  {
+
+    font-size: var(--base-font-size);
+    background-color:#52626d;
+    border: none;
+    padding: 15px; 
+    cursor: pointer;
+    border-radius: 1vw
+}
+
 @media (min-width: 1200px) and (max-width:1920px) {
     .promotion-section{
         grid-template-columns: 2fr 1fr;
@@ -259,6 +284,7 @@ main{
     }
     
 }
+
 @media (min-width: 360px) and (max-width:600px) {
     main{
         width: 90%;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>week1</title>
+    <title>week3</title>
 </head>
 <body >
     <div id="overlay" class="overlay"></div>
@@ -36,108 +36,30 @@
         <span>Welcome to MyHome</span>
     </header>
     <main>
-        <section class="promotion-section">
-            <div class="promotion-bars bar-1">
-                <img class="promotion-img" src="shisa.jpg" alt=""/>
-            <div class="promotion-content">Promotion 1 </div>
-            </div>
-            <div class="promotion-bars bar-2">
-                <img class="promotion-img" src="shisa.jpg" alt=""/>
-            <div class="promotion-content">Promotion 2 </div>
-            </div>
-            <div class="promotion-bars bar-3">
-                <img class="promotion-img" src="shisa.jpg" alt=""/>
-            <div class="promotion-content">Promotion 3 </div>
-            </div>
+        <section id="promotion-section" class="promotion-section">
         </section >
-        
-        <section  class="content-section">
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title1
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title2
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title3
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title4
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title5
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title6
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title7
-                </div>
-            </article >
-            <article  class="content-block">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title8
-                </div>
-            </article >
-            <article  class="content-block block-9">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title9
-                </div>
-            </article >
-            <article  class="content-block block-10">
-                <img class="content-img" src="shisa.jpg" alt="">
-                <img class="content-star" src="star.png" alt="">
-                <div class="content-img-title">
-                    Title10
-                </div>
-            </article >
-            
+        <section  id="content-section" class="content-section">
         </section >
-        
+        <section id ="bottom-bar">
+            <button id="more-bt" >Load More</button>
+        </section>  
     </main>
-    <script>
+    
+    <script type="module">
+    import {load,main} from "./task3.js"
     const mediaQuery = window.matchMedia('(min-width: 600px)');
     function handleTabletChange(e) {
         if (e.matches) {
             exitToggle();
         }
     }
+    main();
     mediaQuery.addEventListener('change', handleTabletChange);
 
     document.getElementById("burger-bt").addEventListener("click",burgerToggle);
     document.getElementById("sidebar-btn").addEventListener("click",exitToggle);
     document.getElementById("overlay").addEventListener("click",exitToggle);
+    document.getElementById("more-bt").addEventListener("click",loadMore);
 
     function burgerToggle(){
         let overlay = document.getElementById("overlay");
@@ -152,6 +74,9 @@
         overlay.classList.remove("active");
 
     }
-</script>
+    function loadMore(){
+        load(13);
+    }
+    </script>
 </body>
 </html>
