@@ -39,10 +39,8 @@ async function getData(url) {
 export async function load(add){
     let baseData = await getData(url31);
     let imgData = await getData(url32);
-    count += add;
-    limit += add;
-    // console.log(count);
-    // console.log(limit);
+    count += add+3;
+    limit += add+3;
     let data = await setData(baseData,imgData,count,limit);
     
     for(const i in data){
