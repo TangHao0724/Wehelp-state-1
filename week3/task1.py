@@ -2,7 +2,6 @@ from pathlib import Path
 import urllib.request
 import json
 import csv
-import os
 from collections import Counter
 import re
 
@@ -23,11 +22,11 @@ cn_map = {item["_id"]: item for item in j_h_cn}
 for x in j_h_en:
     cn_x = cn_map[x["_id"]]
     if cn_x :
-        total_hotels_list.append((cn_x["旅宿名稱"],x["hotel name"],cn_x["地址"],x["address"],cn_x["電話或手機號碼"],cn_x["房間數"],))
-    match = re.search(r'(\w+市)(\w+區)', cn_x["地址"])
-    add = match.group(2) if match else "未知"
-    districts_list.append((add,cn_x["房間數"]))
-
+        total_hotels_list.append((cn_x["旅宿名稱"].strip(),x["hotel name"].strip(),cn_x["地址"],x["address"],cn_x["電話或手機號碼"],cn_x["房間數"],))
+        match = re.search(r'(\w+市)(\w+區)', cn_x["地址"])
+        add = match.group(2) if match else "未知"
+        districts_list.append((add,cn_x["房間數"]))
+# print(len(total_hotels_list))
 counts = Counter(map(lambda i:i[0],districts_list))
 districts_names = [i[0] for i in districts_list]
 # 1.地區列表。2.以地區lost做雙重for迴圈
@@ -39,7 +38,7 @@ for i in districts_set:
         if j[0] == i :
             counter += int(j[1])
     districts.append((i,str(counts[i]),str(counter)))
-
+print(len(districts_set))
 with open(hotels_path,"w",newline="",encoding="utf-8")as f:
     writer = csv.writer(f)
     writer.writerows(total_hotels_list)
