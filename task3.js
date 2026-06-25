@@ -46,6 +46,9 @@ export async function load(add){
     for(const i in data){
         createContent(i,data);
     }
+        if (data.length < 10){
+        document.getElementById("more-bt").remove();
+    }
 
 }
 
