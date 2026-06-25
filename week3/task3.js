@@ -39,8 +39,8 @@ async function getData(url) {
 export async function load(add){
     let baseData = await getData(url31);
     let imgData = await getData(url32);
-    count += add;
-    limit += add;
+    count += add+3;
+    limit += add+3;
     // console.log(count);
     // console.log(limit);
     let data = await setData(baseData,imgData,count,limit);
@@ -48,7 +48,9 @@ export async function load(add){
     for(const i in data){
         createContent(i,data);
     }
-
+    if (data.length < 10){
+        document.getElementById("more-bt").remove();
+    }
 }
 
 async function setData(baseData,imgData,count, limit) {

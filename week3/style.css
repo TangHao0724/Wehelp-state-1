@@ -243,6 +243,9 @@ main{
     cursor: pointer;
     border-radius: 1vw
 }
+.more-bt-close{
+    display: none;
+}
 
 @media (min-width: 1200px) and (max-width:1920px) {
     .promotion-section{
