@@ -6,11 +6,14 @@ let limit = 13;
 export async function main() {
     let baseData = await getData(url31);
     let imgData = await getData(url32);
-    let bWebData = await setData(baseData,imgData,0,3);
+    console.log(baseData["rows"])
+
+    let bWebData = await setData(baseData,imgData,0,3); 
     let cWebData = await setData(baseData,imgData,count,limit);
-    // console.log(count);
     // console.log(limit);
 
+    
+    
     for(const i in bWebData){
         createBar(i,bWebData);
     }
@@ -39,17 +42,17 @@ async function getData(url) {
 export async function load(add){
     let baseData = await getData(url31);
     let imgData = await getData(url32);
-    count += add+3;
-    limit += add+3;
-    // console.log(count);
-    // console.log(limit);
+    count = limit;
+    limit = count+add;
     let data = await setData(baseData,imgData,count,limit);
+    console.log(data)   
     
     for(const i in data){
         createContent(i,data);
     }
     if (data.length < 10){
         document.getElementById("more-bt").remove();
+        
     }
 }
 

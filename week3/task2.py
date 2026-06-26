@@ -12,6 +12,7 @@ articles_path = Path("articles.csv")
 
 def next_page(path):
     url = "https://www.ptt.cc"+ path
+    # print(url)
     data_ptt = urllib.request.urlopen(url).read().decode('utf-8')
     site = BeautifulSoup(data_ptt,'html.parser')
     btns = site.select(".btn-group-paging a")
