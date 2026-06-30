@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>{{ data.sitetitle }}</title>
+</head>
+<body class="flex flex-col items-center  bg-slate-600 min-h-screen gap-4">
+    <header class=" bg-slate-400 rounded-b-xl w-6/12 py-4 pt-6 font-bold text-3xl text-center text-cyan-950 shadow-sm shadow-cyan-950">
+        {{ data.title }}
+    </header>
+    {% if data.is_home %}
+        <section id="login" class="flex flex-col items-center text-center bg-slate-200 m-4 rounded-xl p-3 gap-3 shadow-sm shadow-cyan-950">
+            <span class="text-slate-700 font-bold text-2xl ">
+                登入系統
+            </span>
+            <form action="/login" method="post" id="login" class="flex flex-col items-center gap-2">
+                <section>
+                    <label class="text-slate-800 font-bold text-xl ">
+                        信箱
+                    </label>
+                    <input type="text" name="email" id="email" class="border-1 rounded-sm">
+                </section>
+                <section>
+                    <label class="text-slate-800 font-bold text-xl ">
+                        密碼
+                    </label>
+                    <input type="password" name="password" id="password" class="border-1 rounded-sm">
+                </section>
+                <section>
+                    <label class="text-slate-800 font-bold text-md" >
+                        同意條款
+                    </label>
+                    <input type="checkbox" name="allow" id="allow" >
+                </section>
+                <button type="submit" class="bg-slate-400 px-6 py-1 rounded-sm hover:bg-slate-300 text-slate-800 active:bg-slate-800 active:text-slate-300 font-bold text-md">
+                    送出
+                </button>
+            </form>
+        </section>
+        <hr class=" my-2 border-0 border-t-1 w-64 justify-center border-dashed border-slate-50 shadow-sm  shadow-cyan-950">
+        <section id="getdata" class=" flex flex-col items-center text-center bg-slate-200 m-4 rounded-xl p-3 gap-3 shadow-sm shadow-cyan-950">
+            <span class="text-slate-700 font-bold text-2xl ">
+                取得旅館資訊
+            </span>
+            <form action="/hotel/" method="get" id="hotelForm" class="flex flex-col items-center gap-2">
+                <section>
+                    <label class="text-slate-800 font-bold text-xl ">
+                        編號
+                    </label>
+                    <input type="number" name="hotelIdInput" id="hotelIdInput" class="border rounded-sm">
+                </section>
+                <button type="submit" class="bg-slate-400 px-6 py-1 rounded-sm hover:bg-slate-300 active:bg-slate-800 text-slate-800  active:text-slate-300 font-bold text-md">
+                    送出
+                </button>
+            </form>
+        </section>
+    {% else %}
+        <section id="login" class=" flex flex-col items-center text-center bg-slate-200 m-4 rounded-xl p-3 gap-3 shadow-sm shadow-cyan-950">
+            <span class="text-slate-700 font-bold text-2xl ">
+                {{ data.message }}
+            </span>
+            {% if data.is_login %}
+            <a href="/logout" class="bg-slate-400 px-6 py-1 rounded-sm hover:bg-slate-300 active:bg-slate-800 text-slate-800 hover:text-slate-800 active:text-slate-200 font-bold text-md">
+                登出並回到主頁
+            </a>
+            {% endif %}
+        </section>
+        {% if not data.is_login  %}
+            <a href="/" class="bg-slate-100 px-6 py-1 rounded-sm hover:bg-rose-400 active:bg-slate-100 text-slate-800 hover:text-rose-800 active:text-slate-950 font-bold text-md">
+                返回主頁
+            </a>
+        {% endif %}
+    {% endif %}
+    <script>
+
+        const form = document.getElementById("login");
+        const passwordInput = document.getElementById('password');
+        const allowCheckbox = document.getElementById('allow');
+
+        form.addEventListener('submit', function(event) {
+
+            if (!passwordInput.value.trim()) {
+                alert('請填寫密碼！');
+                event.preventDefault(); 
+                return;
+            }
+
+            if (!allowCheckbox.checked) {
+                alert('您必須勾選同意條款才能送出！');
+                event.preventDefault(); 
+                return;
+            }
+        });
+        const hotelForm = document.getElementById("hotelForm").addEventListener('submit', function(event){
+            event.preventDefault(); 
+        
+            const hotelId = document.getElementById('hotelIdInput').value.trim();
+            
+            if (hotelId) {
+                
+                window.location.href = `/hotel/${hotelId}`;
+            }
+        });
+
+    </script>
+</body>
+</html>
